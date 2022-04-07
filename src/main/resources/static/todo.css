@@ -1,0 +1,25 @@
+* {
+    font-family: helvetica;
+}
+
+.container {
+    width: 75%;
+    margin: 0 auto 10px;
+    border-radius: 5px;
+    padding-bottom: 10px;
+}
+
+.title {
+    text-align: center;
+}
+
+.tdpost  {
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 10px;
+    padding-left: 10px;
+}
+
+.Sultan {
+    margin-left: 45%;
+}

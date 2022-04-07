@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" th:href="@{/todo.css}"> <!-- Länka till css -->
+</head>
+<body>
+<div>
+  <div class="container">
+    <h1 class="title">Välkommen till ToDo Appen</h1>
+    <div class="tdpost" th:each="tdpost : ${toDoPostList}">
+      <h2 th:text="${tdpost.getTitle()}"></h2>
+      <p th:text="${tdpost.getMessage()}"></p>
+      <button th:data-id="${tdpost.getId()}" th:onclick="deletePost(this.getAttribute('data-id'))">Delete</button>
+    </div>
+    <a class="Sultan" th:href="@{/todo/addtodo}"><button>Add new ToDo post!</button></a>
+  </div>
+  <br>
+</div>
+<script type="text/javascript" th:src="@{/todo.js}"></script>
+</body>
+</html>
