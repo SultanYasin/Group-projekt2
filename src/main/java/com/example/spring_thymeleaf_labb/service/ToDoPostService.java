@@ -36,4 +36,18 @@ public class ToDoPostService {
         return toDoPostRepository.save(toDoPost);
     }
 
+    public ToDoPost updateById(int id, ToDoPost changedToDoPost) {
+
+        ToDoPost existingToDoPost = toDoPostRepository.findById(id).orElseThrow();
+
+        if (changedToDoPost.getTitle() != null)
+            existingToDoPost.setTitle(changedToDoPost.getTitle());
+        if (changedToDoPost.getMessage() != null)
+            existingToDoPost.setMessage(changedToDoPost.getMessage());
+
+        toDoPostRepository.save(existingToDoPost);
+
+        return existingToDoPost;
+    }
+
 }

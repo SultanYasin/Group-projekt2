@@ -1,6 +1,9 @@
 package com.example.spring_thymeleaf_labb.controllers;
 
 
+import com.example.spring_thymeleaf_labb.dto.ToDoDTOConverter;
+import com.example.spring_thymeleaf_labb.dto.ToDoRequestDTO;
+import com.example.spring_thymeleaf_labb.dto.ToDoResponseDTO;
 import com.example.spring_thymeleaf_labb.entities.ToDoPost;
 import com.example.spring_thymeleaf_labb.service.ToDoPostService;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +17,12 @@ import java.util.List;
 @RequestMapping("/todo")
 public class ToDoController {
 
+    ToDoDTOConverter toDoDTOConverter;
     ToDoPostService toDoPostService;
 
-    public ToDoController(ToDoPostService toDoPostService) {
+    public ToDoController(ToDoPostService toDoPostService, ToDoDTOConverter toDoDTOConverter) {
         this.toDoPostService = toDoPostService;
+        this.toDoDTOConverter = toDoDTOConverter;
     }
 
     @GetMapping
@@ -43,6 +48,15 @@ public class ToDoController {
     public String createToDoPost(@ModelAttribute ToDoPost toDoPost) {
         toDoPostService.save(toDoPost);
         return "redirect:/todo";
+    }
+
+    @PutMapping("/{id}")
+    public ToDoResponseDTO updateById(@RequestBody ToDoRequestDTO changedToDoPostDTO, @PathVariable("id") int id) {
+
+        ToDoPost changedToDoPost = toDoDTOConverter.ToDoRequestDTOToEntity(changedToDoPostDTO);
+
+        ToDoPost toDoPost = toDoPostService.updateById(id, changedToDoPost);
+        return toDoDTOConverter.entityToBlogResponseDTO(toDoPost);
     }
 
 }
