@@ -10,6 +10,7 @@ import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
@@ -36,18 +37,16 @@ public class ManagePostsView extends VerticalLayout {
         grid.setItems(toDoPostService.findAll(null));
         grid.setWidthFull();
         grid.addComponentColumn(toDoPost -> {
-            Button button = new Button(new Icon(VaadinIcon.CLOSE), e -> {
+            Button closeButton = new Button(new Icon(VaadinIcon.CLOSE_SMALL), e -> {
                 Notification.show(toDoPost.getTitle());
                 toDoPostService.deleteById(toDoPost.getId());
                 updateItems();
             });
 
-            button.addThemeVariants(
-                    ButtonVariant.LUMO_ERROR,
-                    ButtonVariant.LUMO_PRIMARY,
-                    ButtonVariant.LUMO_SMALL
-            );
-            return button;
+            closeButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_SMALL);
+            closeButton.getElement().setAttribute("aria-label", "Close");
+
+            return closeButton;
         });
 
         grid.addColumn(ToDoPost::getTitle).setHeader("Title");
@@ -59,7 +58,7 @@ public class ManagePostsView extends VerticalLayout {
         HorizontalLayout mainContent = new HorizontalLayout(grid, toDoForm);
         mainContent.setSizeFull();
 
-        Button button = new Button("Add new ToDo Post", e -> {
+        Button addButton = new Button("Add new Todo Post", e -> {
             Dialog dialog = new Dialog();
             ToDoForm dialogForm = new ToDoForm(toDoPostService, this);
 
@@ -74,7 +73,13 @@ public class ManagePostsView extends VerticalLayout {
             dialog.open();
         });
 
-        add(mainContent, button);
+        addButton.addThemeVariants(
+                ButtonVariant.LUMO_LARGE,
+                ButtonVariant.LUMO_PRIMARY
+        );
+
+
+        add(mainContent, addButton);
     }
 
     public void updateItems() {
