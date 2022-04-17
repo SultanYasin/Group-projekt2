@@ -25,18 +25,6 @@ public class MainView extends AppLayout {
 
         Button logInButton = new Button("Login" , evt -> UI.getCurrent().navigate(LoginView.class));
         Button logOutButton = new Button("LogOut" , evt -> PrincipalUtil.logout());
-      //  navbarLayout.add(PrincipalUtil.IsAuthenticated() ? logInButton : logInButton);
-
-       // navbarLayout.add(new DrawerToggle(), navbarTitle );
-
-     /*   navbarLayout.add(new DrawerToggle(), new H1("Todo Posts"), logInButton);
-
-        H1 navbarTitle = new H1("Todo Posts!");
-
-        navbarTitle.addClassName("navbartitle");
-
-      */
-
 
 
         if (PrincipalUtil.isLoggedIn()) { navbarLayout.add(logOutButton);}

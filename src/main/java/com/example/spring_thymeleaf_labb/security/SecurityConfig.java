@@ -16,31 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig extends VaadinWebSecurityConfigurerAdapter {
-/*
-    @Autowired // för att kunna hämta metoderna som jag skapade i userDetailService
-    UserDetailsService userDetailsService;
 
-    @Bean
-    PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder(); // Kryptera lösenordet
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        super.configure(http);
-        setLoginView(http , LoginView.class);
-    }
-
-    @Override
-    protected UserDetailsService userDetailsService(){
-        return userDetailsService; // klassen som hanterar inloggning
-    }
-    */
 
 
     @Autowired // för att kunna hämta metoderna som jag skapade i userDetailService

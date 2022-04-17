@@ -19,13 +19,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     AppUserRepository appUserRepository;
-/*
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        AppUser appUser = appUserRepository.findByUsername(username).orElseThrow();
-        return new User(appUser.getUsername() , appUser.getPassword(), List.of());
-*/
 
 // m.h.a loadUserByUsername hämta en användare utifrån användarnamnet som finns och kollar om han som försöker att logga
 // in matchar med någon av användarna som finns redan lagrade
