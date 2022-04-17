@@ -4,6 +4,7 @@ import com.example.spring_thymeleaf_labb.entities.ToDoPost;
 import com.example.spring_thymeleaf_labb.service.ToDoPostService;
 import com.example.spring_thymeleaf_labb.view.ManagePostsView;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.textfield.TextArea;
@@ -16,6 +17,8 @@ public class ToDoForm extends FormLayout {
     TextField title = new TextField("Title");
     TextArea message = new TextArea("Message");
     Button saveButton = new Button("Save");
+
+    DatePicker doneBy = new DatePicker("Done by "); //***///
 
     Binder<ToDoPost> binder = new BeanValidationBinder<>(ToDoPost.class);
     ToDoPostService toDoPostService;
@@ -30,7 +33,7 @@ public class ToDoForm extends FormLayout {
 
         saveButton.addClickListener(e -> handleSave());
 
-        add(title, message, saveButton);
+        add(title, message,doneBy, saveButton);
 
     }
 

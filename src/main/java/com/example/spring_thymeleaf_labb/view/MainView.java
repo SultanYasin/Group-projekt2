@@ -1,5 +1,7 @@
 package com.example.spring_thymeleaf_labb.view;
 
+import com.example.spring_thymeleaf_labb.security.PrincipalUtil;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
@@ -18,16 +20,35 @@ public class MainView extends AppLayout {
     public MainView() {
 
         HorizontalLayout navbarLayout = new HorizontalLayout();
+
+        navbarLayout.add(new DrawerToggle(), new H1("What to do"));
+
+        Button logInButton = new Button("Login" , evt -> UI.getCurrent().navigate(LoginView.class));
+        Button logOutButton = new Button("LogOut" , evt -> PrincipalUtil.logout());
+      //  navbarLayout.add(PrincipalUtil.IsAuthenticated() ? logInButton : logInButton);
+
+       // navbarLayout.add(new DrawerToggle(), navbarTitle );
+
+     /*   navbarLayout.add(new DrawerToggle(), new H1("Todo Posts"), logInButton);
+
         H1 navbarTitle = new H1("Todo Posts!");
+
         navbarTitle.addClassName("navbartitle");
 
+      */
 
-        navbarLayout.add(new DrawerToggle(), navbarTitle);
+
+
+        if (PrincipalUtil.isLoggedIn()) { navbarLayout.add(logOutButton);}
+        else { navbarLayout.add(logInButton);}
 
 
         navbarLayout.setWidthFull();
+
         navbarLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.BETWEEN);
+
         navbarLayout.setAlignItems(FlexComponent.Alignment.CENTER);
+
         navbarLayout.setMargin(true);
 
         addToNavbar(navbarLayout);

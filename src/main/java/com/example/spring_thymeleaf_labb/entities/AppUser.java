@@ -16,12 +16,16 @@ public class AppUser {
     @Column(nullable = false, unique = true)
     private String username;
 
+    @Column(nullable = false)
+    private String password;
+
     @OneToMany(mappedBy = "appUser")
     @JsonIgnoreProperties("appUser")
     private Set<ToDoPost> toDoPosts;
 
-    public AppUser(String username) {
+    public AppUser(String username , String password) {
         this.username = username;
+        this.password = password;
     }
 
     public AppUser(){
@@ -50,5 +54,13 @@ public class AppUser {
 
     public void setToDoPosts(Set<ToDoPost> toDoPosts) {
         this.toDoPosts = toDoPosts;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

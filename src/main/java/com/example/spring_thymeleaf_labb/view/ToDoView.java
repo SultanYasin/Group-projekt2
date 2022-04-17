@@ -5,9 +5,11 @@ import com.vaadin.flow.component.avatar.Avatar;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
 
+@AnonymousAllowed
 @Route(value = "/", layout = MainView.class)
 public class ToDoView extends VerticalLayout {
 

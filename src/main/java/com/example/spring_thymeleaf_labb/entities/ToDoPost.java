@@ -2,6 +2,7 @@ package com.example.spring_thymeleaf_labb.entities;
 
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 public class ToDoPost {
@@ -16,14 +17,22 @@ public class ToDoPost {
     @Column
     private String message;
 
+    @Column
+    private  LocalDate doneBy;
+
     @ManyToOne
     @JoinColumn(name = "appuser_id")
     private AppUser appUser;
 
-    public ToDoPost(String title, String message, AppUser appUser) {
+    public ToDoPost(String title, String message, AppUser appUser, LocalDate doneBy) {
         this.title = title;
         this.message = message;
         this.appUser = appUser;
+        this.doneBy = doneBy;
+    }
+
+    public void setDoneBy(LocalDate doneBy) {
+        this.doneBy = doneBy;
     }
 
     public ToDoPost() {
@@ -61,4 +70,10 @@ public class ToDoPost {
     public AppUser getAppUser() {
         return appUser;
     }
+
+    public LocalDate getDoneBy() {
+        return doneBy;
+    }
+
+
 }

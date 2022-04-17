@@ -1,20 +1,23 @@
 package com.example.spring_thymeleaf_labb.dto;
 
 
+import java.time.LocalDate;
 
 public class ToDoResponseDTO {
 
     private int id;
     private String title;
     private String message;
+    private  LocalDate doneBy;
     private int appUserId;
 
-    public ToDoResponseDTO(int id, String title, String message, int appUserId) {
+    public ToDoResponseDTO(int id, String title, String message, int appUserId , LocalDate doneBy) {
 
         this.id = id;
         this.title = title;
         this.message = message;
         this.appUserId = appUserId;
+        this.doneBy = doneBy;
 
     }
 
@@ -40,6 +43,14 @@ public class ToDoResponseDTO {
 
     public int getId() {
         return id;
+    }
+
+    public LocalDate getDoneBy() {
+        return doneBy;
+    }
+
+    public void setDoneBy(LocalDate doneBy) {
+        this.doneBy = doneBy;
     }
 
     public String getTitle() {

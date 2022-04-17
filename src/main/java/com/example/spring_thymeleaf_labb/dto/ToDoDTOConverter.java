@@ -21,7 +21,7 @@ public class ToDoDTOConverter {
 
         return new ToDoPost(toDoRequestDTO.getTitle(),
                 toDoRequestDTO.getMessage(),
-                appUser
+                appUser, toDoRequestDTO.getDoneBy()
         );
     }
 
@@ -31,7 +31,8 @@ public class ToDoDTOConverter {
                 toDoPost.getId(),
                 toDoPost.getTitle(),
                 toDoPost.getMessage(),
-                toDoPost.getAppUser().getId()
+                toDoPost.getAppUser().getId(),
+                toDoPost.getDoneBy()
         );
     }
 }

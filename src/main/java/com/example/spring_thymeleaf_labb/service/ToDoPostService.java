@@ -12,8 +12,10 @@ public class ToDoPostService {
 
     ToDoPostRepository toDoPostRepository;
 
+
     public ToDoPostService(ToDoPostRepository toDoPostRepository) {
         this.toDoPostRepository = toDoPostRepository;
+
     }
 
     public List<ToDoPost> findAll(String username) {
@@ -44,10 +46,17 @@ public class ToDoPostService {
             existingToDoPost.setTitle(changedToDoPost.getTitle());
         if (changedToDoPost.getMessage() != null)
             existingToDoPost.setMessage(changedToDoPost.getMessage());
+        if (changedToDoPost.getDoneBy() != null)
+            existingToDoPost.setDoneBy(changedToDoPost.getDoneBy());
+
 
         toDoPostRepository.save(existingToDoPost);
 
         return existingToDoPost;
+    }
+
+    public List<ToDoPost> findPostByAuthor (String principalName){
+        return  toDoPostRepository.findByAppUser_Username(principalName);
     }
 
 }
